@@ -1,20 +1,65 @@
 # E-commerce-product-recommendations-using-catboost
-This project builds a recommendation system for an online retail dataset.The workflow involves:
+# Overview
+This project implements a product recommendation system for an e-commerce platform using the CatBoost algorithm. The goal is to predict items a customer is likely to be interested in based on their browsing and purchase history, thereby enhancing customer experience and increasing sales.
 
-Data loading & preprocessing: Importing transaction records from an Excel file
+# Features
+Handles categorical data and missing values efficiently with CatBoost.
 
-Drop rows with missing values
+Implements RFM (Recency, Frequency, Monetary) feature engineering.
 
-Convert InvoiceDate to datetime
+Splits data into train/test sets for evaluation.
 
-Create a new column for total price
+Provides feature importance visualization to understand model behavior.
 
-Filter out negative quantities
+Interactive GUI with ipywidgets for real-time recommendations.
 
-Feature engineering: Feature engineering is a technique where we engineer new features based on existing features. Features like the recency, frequency and monetary value (RFM) are created for each customer .
+# Implementation Steps
+1. Import Libraries
+NumPy, Pandas, Matplotlib, Seaborn
 
-Modeling with CatBoost
+scikit-learn for preprocessing and evaluation
 
-Visualize Feature Importance: CatBoost provides feature importance which helps understand which features are contributing the most to the predictions. We are doing this too understand why model is getting overfitted.
+CatBoost for modeling
 
-I created an interactive GUI where users can input recency, frequency and monetary values to get a recommendation.
+ipywidgets for interactive GUI
+
+# 2. Load Dataset
+Uses the Online Retail dataset.
+
+Cleans missing values and filters invalid entries.
+
+# 3. Data Preprocessing
+Convert InvoiceDate to datetime.
+
+Create TotalPrice column (Quantity × UnitPrice).
+
+Remove negative quantities.
+
+# 4. Feature Engineering
+Compute RFM metrics per customer:
+
+Recency → Days since last purchase
+
+Frequency → Number of unique invoices
+
+Monetary → Total spending
+
+# 5. Train-Test Split
+80% training, 20% testing.
+
+Target variable: 1 if Monetary > median, else 0.
+
+# 6. Train CatBoost Model
+Parameters: iterations=100, learning_rate=0.1, depth=6.
+
+Achieves high accuracy (initially overfitted, tuned further).
+
+# 7. Feature Importance
+Visualizes contribution of Recency, Frequency, and Monetary.
+
+Identifies Monetary as dominant feature.
+
+# 8. Interactive GUI
+Sliders for Recency, Frequency, and Monetary.
+
+Real-time prediction: Recommend or Do not recommend.
